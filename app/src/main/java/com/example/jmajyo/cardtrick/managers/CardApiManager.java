@@ -11,9 +11,12 @@ import com.android.volley.toolbox.Volley;
 import com.example.jmajyo.cardtrick.model.Card;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.Reader;
 import java.io.StringReader;
+import java.lang.reflect.Type;
+import java.util.Collection;
 
 public class CardApiManager {
     public interface CardApiManagerNewCardListener{
@@ -51,7 +54,8 @@ public class CardApiManager {
         Gson gson = new GsonBuilder().create();
 
         CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
-
+        /*Type collectionType = new TypeToken<Collection<Card>>(){}.getType();
+        Collection<Integer> cardEntity = gson.fromJson(response, collectionType);*/
 
         Card card = new Card();
         card.setImage(cardEntity.getImage());
