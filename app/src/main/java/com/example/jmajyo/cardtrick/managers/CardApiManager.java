@@ -11,12 +11,11 @@ import com.android.volley.toolbox.Volley;
 import com.example.jmajyo.cardtrick.model.Card;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
+
 
 import java.io.Reader;
 import java.io.StringReader;
-import java.lang.reflect.Type;
-import java.util.Collection;
+
 
 public class CardApiManager {
     public interface CardApiManagerNewCardListener{
@@ -28,7 +27,7 @@ public class CardApiManager {
         this.listener = listener;
     }
 
-    private static final String URL = "http://192.168.1.39:8000/api/card";
+    private static final String URL = "http://192.168.1.38:8000/api/card";
 
     public void newCard(Context context){
         RequestQueue queue = Volley.newRequestQueue(context);
@@ -37,7 +36,7 @@ public class CardApiManager {
             @Override
             public void onResponse(String response) {
                 Log.d("RESPONSE", response);
-                parseJSON(response);
+                    parseJSON(response);
             }
         }, new Response.ErrorListener(){
             @Override
@@ -50,16 +49,13 @@ public class CardApiManager {
     }
 
     private void parseJSON(String response) {
+        Card card = new Card();
         Reader reader= new StringReader(response);
         Gson gson = new GsonBuilder().create();
-
-        CardEntity cardEntity = gson.fromJson(reader, CardEntity.class);
-        /*Type collectionType = new TypeToken<Collection<Card>>(){}.getType();
-        Collection<Integer> cardEntity = gson.fromJson(response, collectionType);*/
-
-        Card card = new Card();
-        card.setImage(cardEntity.getImage());
-
+        CardEntity[] cardEntities = gson.fromJson(reader, CardEntity[].class);
+        for (int i = 0; i < cardEntities.length; i++) {
+            card.setImage(cardEntities[i].getImage());
+        }
         if(listener !=null){
             listener.onNewCard(card);
         }
