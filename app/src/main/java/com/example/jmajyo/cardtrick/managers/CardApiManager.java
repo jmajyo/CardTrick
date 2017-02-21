@@ -28,11 +28,11 @@ public class CardApiManager {
     }
 
     private static final String BASEURL = "http://";
-    private static final String FINURL = "/api/card";
+    private static final String FINURL = "/api/card/?_order=id";
 
     public void newCard(Context context, String ip){
         RequestQueue queue = Volley.newRequestQueue(context);
-        String dirIP="192.168.1.38:8000";
+        String dirIP="192.168.1.35:8000";
         String URL;
         if(ip==null || ip=="")
         {
