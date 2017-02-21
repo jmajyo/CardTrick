@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_change_ip"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.jmajyo.cardtrick.activities.ChangeIPActivity"
+    android:background="@drawable/card_back_blue">
+
+    <EditText
+        android:id="@+id/activity_change_ip___text"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="33sp"
+        android:textStyle="bold|italic"
+        android:textColor="#c4c119"
+        android:textColorHint="#c4c119"
+        android:hint="format x.x.x.x:x"
+        android:gravity="center"
+        android:layout_marginTop="150dp"
+        android:layout_marginBottom="20dp"
+        android:background="#b9151414"
+        />
+    <Button
+        android:id="@+id/activity_change_ip___button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Save IP"
+        android:textStyle="bold"
+        android:layout_below="@id/activity_change_ip___text"
+        android:layout_centerHorizontal="true"
+        />
+
+</RelativeLayout>

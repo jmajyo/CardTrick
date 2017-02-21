@@ -27,11 +27,19 @@ public class CardApiManager {
         this.listener = listener;
     }
 
-    private static final String URL = "http://192.168.1.38:8000/api/card";
+    private static final String BASEURL = "http://";
+    private static final String FINURL = "/api/card/?_order=id";
 
-    public void newCard(Context context){
+    public void newCard(Context context, String ip){
         RequestQueue queue = Volley.newRequestQueue(context);
-
+        String dirIP="192.168.1.35:8000";
+        String URL;
+        if(ip==null || ip=="")
+        {
+            URL=BASEURL+dirIP+FINURL;
+        }else{
+            URL=BASEURL+ip+FINURL;
+        }
         StringRequest request = new StringRequest(URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
